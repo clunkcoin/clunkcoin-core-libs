@@ -12,7 +12,7 @@ struct UserCredentials {
 
 class User {
 public:
-    static UserCredentials createNewUser(const std::string& password, const std::string& pin, const std::string& routing_number);
+    static UserCredentials createNewUser(const std::string& password, const std::string& pin);
     static UserCredentials verifyReturningUser(const std::string& password, const std::string& pin, const std::string& routing_number, const std::string& input_account_number);
 };
 

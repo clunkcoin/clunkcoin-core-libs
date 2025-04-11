@@ -3,12 +3,10 @@
 #include <sstream>
 #include <iomanip>
 
-void RoutingNumberGenerator::generateRoutingNumber(std::string& routing_number) {
-    time_t t = time(nullptr);
-    long timestamp = static_cast<long>(t);
-    long roundedTimestamp = (timestamp / 15) * 15;
-
-    std::stringstream ss;
-    ss << std::setw(9) << std::setfill('0') << (roundedTimestamp % 1000000000);
-    routing_number = ss.str();
+std::string RoutingNumberGenerator::generateRoutingNumber() {
+    long now = static_cast<long>(std::time(nullptr));
+    long nearestQuarterMinute = (now / 15) * 15 % 1000000000;
+    std::ostringstream oss;
+    oss << std::setw(9) << std::setfill('0') << nearestQuarterMinute;
+    return oss.str();
 }

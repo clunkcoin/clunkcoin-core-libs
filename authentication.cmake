@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Set position independent code for shared libraries
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64") // FIX THIS TO WORK WITH BOTH.
+
 # Find OpenSSL package
 find_package(OpenSSL REQUIRED)
 

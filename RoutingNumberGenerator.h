@@ -5,7 +5,7 @@
 
 class RoutingNumberGenerator {
 public:
-    static void generateRoutingNumber(std::string& routing_number);
+    static std::string generateRoutingNumber();
 };
 
 #endif // ROUTINGNUMBERGENERATOR_H

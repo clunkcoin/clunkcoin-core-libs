@@ -3,13 +3,14 @@
 #include "RoutingNumberGenerator.h"
 #include <iostream>
 
-UserCredentials User::createNewUser(const std::string& password, const std::string& pin, const std::string& routing_number) {
+UserCredentials User::createNewUser(const std::string& password, const std::string& pin) {
+    std::string routingNumber = RoutingNumberGenerator::generateRoutingNumber();
     UserCredentials credentials;
-    credentials.routing_number = routing_number;
+    credentials.routing_number = routingNumber;
     unsigned char hash[SHA256_DIGEST_LENGTH];
     unsigned char pub_key_raw[65];
     unsigned char priv_key_raw[32];
-    CryptoUtils::hashPasswordPinRouting(password, pin, routing_number, hash);
+    CryptoUtils::hashPasswordPinRouting(password, pin, routingNumber, hash);
     EC_KEY* ec_key = CryptoUtils::createECKey(hash);
     size_t pub_len = CryptoUtils::savePublicKey(ec_key, pub_key_raw);
     size_t priv_len = CryptoUtils::savePrivateKey(ec_key, priv_key_raw);
